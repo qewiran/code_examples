@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 
+// я решил создать надстройку над классом std::array, чтобы перегрузить некоторые операторы, такие как operator+
 template <size_t rowLength, typename ExactByteType = uint8_t>
 class ByteRow
 {
@@ -13,6 +14,7 @@ public:
     using Iterator = typename std::array<ExactByteType, rowLength>::iterator;
     using ConstIterator = typename std::array<ExactByteType, rowLength>::const_iterator;
 
+    // вот тут я не уверен, нужно ли мне было вводить этот конструктор, вроде по правилу нуля можно было и отказаться
     ByteRow(const std::array<ExactByteType, rowLength>& byteSequence) : values(byteSequence) {}
     ByteRow() = default;
 
@@ -90,6 +92,7 @@ public:
         return this->values.cend();
     }
 
+    // это чтобы сравнить итоговые хэш-суммы в итоге 
     operator std::string()
     {
         std::ostringstream convert;
@@ -100,6 +103,9 @@ public:
         return convert.str();
     }
 };
+
+// я выбрал такие функции для алгоритма, потому что в любом современном десктопном процессоре есть похожие векторные инструкции
+// насчет присутствия fxa не уверен, но в общем, легко векторизовать программу для обработки чудовищно больших файлов 
 
 template <typename ExactByteType, size_t rowLength>
 ByteRow<rowLength, ExactByteType> fxa(const ByteRow<rowLength, ExactByteType>& xor1, const ByteRow<rowLength, ExactByteType>& xor2,
