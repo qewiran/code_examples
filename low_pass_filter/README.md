@@ -1,4 +1,6 @@
-## Реализация ФНЧ Баттерворта 
+# Реализация ФНЧ Баттерворта
+
+## Вывод передаточной функции
 
 Даны величины: граничные частоты полосы пропускания в герцах: верхняя — `freqStop`, нижняя — `freqPass`, коэффициенты передачи полосы пропускания `gainPass` в децибелах, коэффициенты передачи полосы подавления `gainStop` в децибелах.
 
@@ -45,4 +47,32 @@ H_{n}(s) = \frac{1}{(s-s_{1})\ldots(s-s_{n})} = \frac{1}{s^n+a_{n-1}s_{n-1}+\ldo
 $$
 
 где $B_{n}(s)$ — полином Баттерворта.
+
+Чтобы получить передаточную функцию для частоты среза не равной 1 Гц, просто делим переменную на $\omega_c$:
+
+$$
+H(s) = H_{n}\left( \frac{s}{\omega _{c}} \right) = \frac{1}{B_{n}\left( \frac{s}{\omega_{c}} \right)}
+$$
+
+## Определение нужного порядка фильтра и частоты среза (если не задана)
+
+Коэффициент передачи выражен в децибелах:
+
+$$
+G = 20 \log_{10}|H(i\omega)| = 20 \log_{10}\left( \frac{1}{\sqrt{ 1+ \left( \frac{\omega}{\omega_{c}} \right)^{2n}  }} \right) = -10\log_{10}\left({ 1+ \left( \frac{\omega}{\omega_{c}} \right)^{2n} } \right)  
+$$
+
+Для заданных значений `freqStop`, `freqPass`, `gainStop`, `gainPass`:
+
+$$
+\begin{align}
+&G_{\mathrm{pass}} = -10\log_{10}\left( 1+\left( \frac{\omega_{\mathrm{pass}}}{\omega_{c}} \right)^{2n}  \right) \implies \left( \frac{\omega_{\mathrm{pass}}}{\omega_{c}} \right)^{2n} = 10^{-G_{\mathrm{pass}}/10} -1 \\
+
+&G_{\mathrm{stop}} = -10\log_{10}\left( 1+\left( \frac{\omega_{\mathrm{stop}}}{\omega_{c}} \right)^{2n}  \right) \implies \left( \frac{\omega_{\mathrm{stop}}}{\omega_{c}} \right)^{2n} = 10^{-G_{\mathrm{stop}}/10} -1 \\
+
+& \left( \frac{\omega_{\mathrm{stop}}}{\omega_{\mathrm{pass}}} \right)^{2n} = \frac{10^{-G_{\mathrm{stop}}/10} -1}{ 10^{-G_{\mathrm{pass}}/10} -1} \implies n = \frac{\log_{10}\left(\frac{10^{-G_{\mathrm{stop}}/10} -1}{ 10^{-G_{\mathrm{pass}}/10} -1} \right)}{2 \log_{10}\left( \frac{\omega_{\mathrm{stop}}}{\omega_{\mathrm{pass}}} \right) } 
+\end{align} 
+$$
+
+
 
