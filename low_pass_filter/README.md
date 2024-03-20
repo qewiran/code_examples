@@ -51,7 +51,7 @@ $$
 Чтобы получить передаточную функцию для частоты среза не равной 1 Гц, просто делим переменную на $\omega_c$ :
 
 $$
-H(s) = H_{n}\left( \frac{s}{\omega _{c}} \right) = \frac{1}{B_{n}\left( \frac{s}{\omega_{c}} \right)}
+H(s) = H_{n}\left(\frac{s}{\omega _{c}}\right) = \frac{1}{B_{n}\left(\frac{s}{\omega_{c}}\right)}
 $$
 
 
@@ -67,11 +67,26 @@ $$
 
 $$
 \begin{align}
-&G_{\mathrm{pass}} = -10\log_{10}\left( 1+\left( \frac{\omega_{\mathrm{pass}}}{\omega_{c}} \right)^{2n}  \right) \implies \left( \frac{\omega_{\mathrm{pass}}}{\omega_{c}} \right)^{2n} = 10^{-G_{\mathrm{pass}}/10} -1 \\
-&G_{\mathrm{stop}} = -10\log_{10}\left( 1+\left( \frac{\omega_{\mathrm{stop}}}{\omega_{c}} \right)^{2n}  \right) \implies \left( \frac{\omega_{\mathrm{stop}}}{\omega_{c}} \right)^{2n} = 10^{-G_{\mathrm{stop}}/10} -1 \\
-& \left( \frac{\omega_{\mathrm{stop}}}{\omega_{\mathrm{pass}}} \right)^{2n} = \frac{10^{-G_{\mathrm{stop}}/10} -1}{ 10^{-G_{\mathrm{pass}}/10} -1} \implies n = \frac{\log_{10}\left(\frac{10^{-G_{\mathrm{stop}}/10} -1}{ 10^{-G_{\mathrm{pass}}/10} -1} \right)}{2 \log_{10}\left( \frac{\omega_{\mathrm{stop}}}{\omega_{\mathrm{pass}}} \right) } 
+&G_{\mathrm{pass}} = -10\log_{10}\left( 1+\left( \frac{\omega_{\mathrm{pass}}}{\omega_{c}} \right)^{2n}  \right) \implies \left( \frac{\omega_{\mathrm{pass}}}{\omega_{c}} \right)^{2n} = 10^{-G_{\mathrm{pass}}/10} -1 \tag{2}\\
+&G_{\mathrm{stop}} = -10\log_{10}\left( 1+\left( \frac{\omega_{\mathrm{stop}}}{\omega_{c}} \right)^{2n}  \right) \implies \left( \frac{\omega_{\mathrm{stop}}}{\omega_{c}} \right)^{2n} = 10^{-G_{\mathrm{stop}}/10} -1 \tag{3}\\
+& \left( \frac{\omega_{\mathrm{stop}}}{\omega_{\mathrm{pass}}} \right)^{2n} = \frac{10^{-G_{\mathrm{stop}}/10} -1}{ 10^{-G_{\mathrm{pass}}/10} -1} \implies n = \frac{\log_{10}\left(\frac{10^{-G_{\mathrm{stop}}/10} -1}{ 10^{-G_{\mathrm{pass}}/10} -1} \right)}{2 \log_{10}\left( \frac{\omega_{\mathrm{stop}}}{\omega_{\mathrm{pass}}} \right) } \tag{4} 
 \end{align} 
 $$
+
+Выразим $\omega_{c}$ из (2): 
+
+$$
+\omega_{c} = \frac{\omega_{\mathrm{pass}}}{(10^{-G_{\mathrm{pass}}/10} -1)^{1/2n}}
+$$
+
+Выразим $\omega_{c}$ из (3):
+
+$$
+\omega_{c} = \frac{\omega_{\mathrm{stop}}}{(10^{-G_{\mathrm{stop}}/10} -1)^{1/2n}}
+$$
+
+Так как порядок фильтра — целое число, то значения могут не сойтись из-за того, что округляем вверх (4)
+
 
 
 
