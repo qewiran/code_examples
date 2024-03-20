@@ -67,9 +67,7 @@ $$
 $$
 \begin{align}
 &G_{\mathrm{pass}} = -10\log_{10}\left( 1+\left( \frac{\omega_{\mathrm{pass}}}{\omega_{c}} \right)^{2n}  \right) \implies \left( \frac{\omega_{\mathrm{pass}}}{\omega_{c}} \right)^{2n} = 10^{-G_{\mathrm{pass}}/10} -1 \\
-
 &G_{\mathrm{stop}} = -10\log_{10}\left( 1+\left( \frac{\omega_{\mathrm{stop}}}{\omega_{c}} \right)^{2n}  \right) \implies \left( \frac{\omega_{\mathrm{stop}}}{\omega_{c}} \right)^{2n} = 10^{-G_{\mathrm{stop}}/10} -1 \\
-
 & \left( \frac{\omega_{\mathrm{stop}}}{\omega_{\mathrm{pass}}} \right)^{2n} = \frac{10^{-G_{\mathrm{stop}}/10} -1}{ 10^{-G_{\mathrm{pass}}/10} -1} \implies n = \frac{\log_{10}\left(\frac{10^{-G_{\mathrm{stop}}/10} -1}{ 10^{-G_{\mathrm{pass}}/10} -1} \right)}{2 \log_{10}\left( \frac{\omega_{\mathrm{stop}}}{\omega_{\mathrm{pass}}} \right) } 
 \end{align} 
 $$
