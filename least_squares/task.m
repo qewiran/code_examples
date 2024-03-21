@@ -9,21 +9,23 @@ x = linspace(-1,1); % для построение графиков
 
 %% МНК по равноотстоящим узлам (узлов >= 5)
 
-figure(1);
+figure('Name','Approximation','NumberTitle','off');
 clf;
+title('Аппроксимация без погрешности измерений');
 hold on;
 scatter(tblX,tblY);
-polyLSM = lsm(tblX,tblY,approximationOrder)
+polyLSM = lsm(tblX,tblY,approximationOrder);
 
-plot(x,polyval(p,x));
+plot(x,polyval(polyLSM,x));
 plot(x,f(x));
 
 legend('exact data','LSM 5th order basis', '$e^x(x-2)^2$ ', 'Interpreter', 'Latex');
 hold off;
 
 
-figure(2);
+figure('Name','Approximation with errors','NumberTitle','off');
 clf;
+title('Аппроксимация c погрешностями измерений');
 hold on;
 err = rand(1,nodeCount, "double"); % генерация ошибок 
 err_sign = 2*randi([0, 1],1,nodeCount)-1; % генерация случайных знаков (+1,-1)
@@ -35,7 +37,7 @@ end
 
 scatter(tblX,tblY_errs);
 
-polyLSMerr = lsm(tblX,tblY_errs,approximationOrder)
+polyLSMerr = lsm(tblX,tblY_errs,approximationOrder);
 plot(x,polyval(polyLSMerr,x));
 plot(x,f(x));
 
